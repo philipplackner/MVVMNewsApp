@@ -1,7 +1,7 @@
 package com.androiddevs.mvvmnewsapp.db
 
 import androidx.room.*
-import com.androiddevs.mvvmnewsapp.Article
+import com.androiddevs.mvvmnewsapp.models.Article
 
 @Dao
 interface ArticleDao {
