@@ -13,13 +13,11 @@ import kotlinx.android.synthetic.main.item_article_preview.view.*
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
-    private var onItemClickListener: ((Article) -> Unit)? = null
-
     inner class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
     private val differCallback = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(oldItem: Article, newItem: Article): Boolean {
-            return oldItem === newItem
+            return oldItem.url == newItem.url
         }
 
         override fun areContentsTheSame(oldItem: Article, newItem: Article): Boolean {
@@ -43,6 +41,8 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         return differ.currentList.size
     }
 
+    private var onItemClickListener: ((Article) -> Unit)? = null
+
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
         holder.itemView.apply {
@@ -58,17 +58,10 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         }
     }
 
-    fun addItem(article: Article, position: Int) {
-        val curList = differ.currentList.toMutableList()
-        curList.add(position, article)
-        differ.submitList(curList)
+    fun setOnItemClickListener(listener: (Article) -> Unit) {
+        onItemClickListener = listener
     }
 
-    fun deleteArticle(article: Article) {
-        val curList = differ.currentList.toMutableList()
-        curList.remove(article)
-        differ.submitList(curList)
-    }
 }
 
 
