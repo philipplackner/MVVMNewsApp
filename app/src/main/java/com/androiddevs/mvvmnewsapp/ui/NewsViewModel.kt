@@ -41,7 +41,7 @@ class NewsViewModel(
     }
 
     fun searchNews(searchQuery: String) = viewModelScope.launch {
-        safeSeachNewsCall(searchQuery)
+        safeSearchNewsCall(searchQuery)
     }
 
     private fun handleBreakingNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
@@ -60,6 +60,9 @@ class NewsViewModel(
         }
         return Resource.Error(response.message())
     }
+
+
+
 
     private fun handleSearchNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
         if(response.isSuccessful) {
@@ -88,11 +91,11 @@ class NewsViewModel(
         newsRepository.deleteArticle(article)
     }
 
-    private suspend fun safeSeachNewsCall(searchQuery: String) {
+    private suspend fun safeSearchNewsCall(searchQuery: String) {
         searchNews.postValue(Resource.Loading())
         try {
             if(hasInternetConnection()) {
-                val response = newsRepository.getBreakingNews(searchQuery, searchNewsPage)
+                val response = newsRepository.searchNews(searchQuery, searchNewsPage)
                 searchNews.postValue(handleSearchNewsResponse(response))
             } else {
                 searchNews.postValue(Resource.Error("No internet connection"))
