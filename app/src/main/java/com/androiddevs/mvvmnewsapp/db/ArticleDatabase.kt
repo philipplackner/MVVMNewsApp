@@ -9,7 +9,7 @@ import com.androiddevs.mvvmnewsapp.models.Article
 
 @Database(
     entities = [Article::class],
-    version = 1
+    version = 2
 )
 @TypeConverters(Converters::class)
 abstract class ArticleDatabase : RoomDatabase() {
@@ -30,6 +30,8 @@ abstract class ArticleDatabase : RoomDatabase() {
                 context.applicationContext,
                 ArticleDatabase::class.java,
                 "article_db.db"
-            ).build()
+            )
+                .fallbackToDestructiveMigration() // either we can do this or create a migration request and define the migration
+                .build()
     }
 }
