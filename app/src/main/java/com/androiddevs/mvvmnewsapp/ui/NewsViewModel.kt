@@ -30,6 +30,8 @@ class NewsViewModel(
     val searchNews: MutableLiveData<Resource<NewsResponse>> = MutableLiveData()
     var searchNewsPage = 1
     var searchNewsResponse: NewsResponse? = null
+    var newSearchQuery:String? = null
+    var oldSearchQuery:String? = null
 
 
     init {
@@ -67,10 +69,12 @@ class NewsViewModel(
     private fun handleSearchNewsResponse(response: Response<NewsResponse>) : Resource<NewsResponse> {
         if(response.isSuccessful) {
             response.body()?.let { resultResponse ->
-                searchNewsPage++
-                if(searchNewsResponse == null) {
+                if(searchNewsResponse == null || newSearchQuery != oldSearchQuery) {
+                    searchNewsPage = 1
+                    oldSearchQuery = newSearchQuery
                     searchNewsResponse = resultResponse
                 } else {
+                    searchNewsPage++
                     val oldArticles = searchNewsResponse?.articles
                     val newArticles = resultResponse.articles
                     oldArticles?.addAll(newArticles)
@@ -92,6 +96,7 @@ class NewsViewModel(
     }
 
     private suspend fun safeSearchNewsCall(searchQuery: String) {
+        newSearchQuery = searchQuery
         searchNews.postValue(Resource.Loading())
         try {
             if(hasInternetConnection()) {
