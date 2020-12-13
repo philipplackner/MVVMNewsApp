@@ -2,7 +2,7 @@ package com.androiddevs.mvvmnewsapp.api
 
 
 import com.androiddevs.mvvmnewsapp.BuildConfig
-import com.androiddevs.mvvmnewsapp.NewsResponse
+import com.androiddevs.mvvmnewsapp.models.NewsResponse
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query

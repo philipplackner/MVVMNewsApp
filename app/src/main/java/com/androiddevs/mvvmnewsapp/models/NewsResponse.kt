@@ -1,4 +1,4 @@
-package com.androiddevs.mvvmnewsapp
+package com.androiddevs.mvvmnewsapp.models
 
 data class NewsResponse(
     val articles: List<Article>,
