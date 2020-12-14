@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.item_article_preview.view.*
 import java.time.LocalDateTime
 
-class NewsAdapter(newsList: List<Article>) : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
+class NewsAdapter() : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
     inner class ArticleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
 
     private val diffCallback = object : DiffUtil.ItemCallback<Article>() {
@@ -43,7 +43,7 @@ class NewsAdapter(newsList: List<Article>) : RecyclerView.Adapter<NewsAdapter.Ar
             tvTitle.text = article.title
             tvSource.text = article.source.name
             tvDescription.text = article.description
-            tvPublishedAt.text = LocalDateTime.parse(article.publishedAt).toString()
+            tvPublishedAt.text = article.publishedAt
 
             setOnClickListener {
                 onItemClickedListener?.let { it(article) }
