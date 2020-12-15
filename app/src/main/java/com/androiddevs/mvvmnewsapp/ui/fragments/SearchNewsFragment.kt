@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.widget.addTextChangedListener
 import com.androiddevs.mvvmnewsapp.R
+import com.androiddevs.mvvmnewsapp.ui.viewmodels.PageCount
 import com.androiddevs.mvvmnewsapp.utils.Constant
 import kotlinx.android.synthetic.main.fragment_search_news.*
 import kotlinx.coroutines.Job
@@ -16,9 +17,20 @@ class SearchNewsFragment : BaseFragmentWithNewsViewModel(R.layout.fragment_searc
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupRecyclerView(rvSearchNews)
+        setupRecyclerView(rvSearchNews) {
+            etSearch.text.let {
+                val searchQuery = it.toString()
+                viewModel.searchNews(searchQuery)
+            }
+        }
         setupArticleClickListener(R.id.action_searchNewsFragment_to_articleFragment)
-        setupNewsResponseObserver(viewModel.newsSearched, LOG_TAG, paginationProgressBar)
+        setupNewsResponseObserver(
+            viewModel.newsSearched,
+            LOG_TAG,
+            rvSearchNews,
+            paginationProgressBar,
+            PageCount.SEARCHEDNEWS
+        )
 
         var job: Job? = null
         etSearch.addTextChangedListener { editable ->

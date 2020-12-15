@@ -8,6 +8,8 @@ import androidx.navigation.ui.setupWithNavController
 import com.androiddevs.mvvmnewsapp.R
 import com.androiddevs.mvvmnewsapp.db.ArticleDatabase
 import com.androiddevs.mvvmnewsapp.repositories.NewsRepository
+import com.androiddevs.mvvmnewsapp.ui.viewmodels.NewsViewModel
+import com.androiddevs.mvvmnewsapp.ui.viewmodels.NewsViewModelFactory
 import kotlinx.android.synthetic.main.activity_news.*
 
 class NewsActivity : AppCompatActivity() {
