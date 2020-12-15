@@ -17,7 +17,7 @@ import com.androiddevs.mvvmnewsapp.utils.Resource
 
 open class BaseFragmentWithNewsViewModel(contentLayoutId: Int) : Fragment(contentLayoutId) {
     protected lateinit var viewModel: NewsViewModel
-    private lateinit var newsAdapter: NewsAdapter
+    protected lateinit var newsAdapter: NewsAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,7 +44,7 @@ open class BaseFragmentWithNewsViewModel(contentLayoutId: Int) : Fragment(conten
         }
     }
 
-    protected fun  setupObserver(liveData: MutableLiveData<Resource<NewsResponse>>, logTag: String, progressBar: View) {
+    protected fun  setupNewsResponseObserver(liveData: MutableLiveData<Resource<NewsResponse>>, logTag: String, progressBar: View) {
         liveData.observe(viewLifecycleOwner,   { resource ->
             when (resource) {
                 is Resource.Success -> {

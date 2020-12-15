@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.androiddevs.mvvmnewsapp.models.Article
 import com.androiddevs.mvvmnewsapp.models.NewsResponse
 import com.androiddevs.mvvmnewsapp.repositories.NewsRepository
 import com.androiddevs.mvvmnewsapp.utils.Resource
@@ -55,5 +56,15 @@ class NewsViewModel(
             }
         }
         return Resource.Error(message = response.message())
+    }
+
+    fun saveArticle(article: Article) = viewModelScope.launch {
+        repository.saveArticle(article)
+    }
+
+    fun getSavedArticles() = repository.getSavedArticles()
+
+    fun deleteSavedArticle(article: Article) = viewModelScope.launch {
+        repository.deleteSavedArticle(article)
     }
 }
