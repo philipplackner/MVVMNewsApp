@@ -8,7 +8,9 @@ import retrofit2.Response
 class NewsRepository(
     val db: ArticleDatabase
 ) {
-    suspend fun getBreakingNews(countryCode: String?, page: Int): Response<NewsResponse> {
-        return RetrofitInstance.newsApi.getBreakingNews(countryCode ?: "id", page)
-    }
+    suspend fun getBreakingNews(countryCode: String?, page: Int): Response<NewsResponse> =
+        RetrofitInstance.newsApi.getBreakingNews(countryCode ?: "id", page)
+
+    suspend fun searchNews(searchQuery: String, page: Int): Response<NewsResponse> =
+        RetrofitInstance.newsApi.searchNews(searchQuery, page)
 }
