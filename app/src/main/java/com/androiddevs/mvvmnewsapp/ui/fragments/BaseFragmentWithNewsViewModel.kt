@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.AbsListView
+import android.widget.Toast
+import android.widget.Toast.LENGTH_LONG
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.findNavController
@@ -115,6 +117,7 @@ abstract class BaseFragmentWithNewsViewModel(contentLayoutId: Int) : Fragment(co
                     hideProgressBar(progressBar)
                     resource.message?.let { message ->
                         Log.d(logTag, "An error occurred: $message")
+                        Toast.makeText(activity, "$message", LENGTH_LONG).show()
                     }
                 }
                 is Resource.Loading -> showProgressBar(progressBar)
