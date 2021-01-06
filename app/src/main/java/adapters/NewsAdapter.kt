@@ -54,7 +54,6 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
 
     override fun getItemCount(): Int {
         return differ.currentList.size
-
     }
 
     private var onItemClickListener:((Article) -> Unit)? = null

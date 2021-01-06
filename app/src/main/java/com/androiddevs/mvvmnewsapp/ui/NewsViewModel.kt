@@ -49,8 +49,4 @@ class NewsViewModel(
         newsRepository.deleteArticle(article)
     }
 
-
-
-
-
 }
