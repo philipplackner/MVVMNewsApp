@@ -16,10 +16,10 @@ import util.Resource
 
 class BreakingNewsFragment: Fragment(R.layout.fragment_breaking_news) {
 
-    lateinit var viewModel : NewsViewModel
-    lateinit var newsAdapter: NewsAdapter
+    private lateinit var viewModel : NewsViewModel
+    private lateinit var newsAdapter: NewsAdapter
 
-    val TAG = "BreakingNewsFragment"
+    private val TAG = "BreakingNewsFragment"
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
