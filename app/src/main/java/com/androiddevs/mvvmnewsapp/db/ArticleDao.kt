@@ -1,4 +1,4 @@
-package com.androiddevs.mvvmnewsapp.ui.db
+package com.androiddevs.mvvmnewsapp.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -6,7 +6,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.androiddevs.mvvmnewsapp.ui.models.Article
+import com.androiddevs.mvvmnewsapp.models.Article
 
 @Dao
 interface ArticleDao {
