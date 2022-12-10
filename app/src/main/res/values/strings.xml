@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">MVVMNewsApp</string>
+    <string name="API_KEY">4195a4075c234971ab2c0d4994862e6e</string>
 </resources>
