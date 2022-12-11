@@ -28,16 +28,16 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         super.onViewCreated(view, savedInstanceState)
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
+
         newsAdapter.setOnItemClickListener {
             val bundle = Bundle().apply{
                 putSerializable("article",it)
             }
             findNavController().navigate(
-                R.id.action_savedNewsFragment_to_articleFragment,
+                R.id.action_searchNewsFragment_to_articleFragment,
                 bundle
             )
         }
-
         var job: Job? = null
         etSearch.addTextChangedListener{editable ->
             job?.cancel()
@@ -89,3 +89,5 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
         }
     }
 }
+
+
