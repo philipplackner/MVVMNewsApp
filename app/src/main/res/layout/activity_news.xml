@@ -26,9 +26,9 @@
         app:menu="@menu/bottom_navigation_menu"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        app:mbn_backgroundBottomColor="@color/purple200"
+        app:mbn_backgroundBottomColor="@color/colorPrimary"
         app:mbn_circleColor="@color/white"
-        app:mbn_selectedIconColor="@color/purple200"
+        app:mbn_selectedIconColor="@color/colorPrimary"
         app:mbn_defaultIconColor="@color/white"
         />
 

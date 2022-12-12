@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_favorite"
         app:fabSize="normal"
-        android:layout_marginBottom="32dp"
+        android:layout_marginBottom="56dp"
         android:layout_marginEnd="32dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
