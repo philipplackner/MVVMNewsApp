@@ -100,7 +100,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
             val isTotalMoreThanVisible = totalItemCount >= QUERY_PAGE_SIZE
             val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning && isTotalMoreThanVisible && isScrolling
             if(shouldPaginate){
-                viewModel.getBreakingNews("us")
+                viewModel.getBreakingNews("tr")
                 isScrolling = false
             }
 

@@ -30,6 +30,9 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_11.toString()
     }
+    dataBinding {
+        enabled = true
+    }
     namespace 'com.androiddevs.mvvmnewsapp'
 }
 dependencies {
@@ -72,4 +75,6 @@ dependencies {
     // Glide
     implementation 'com.github.bumptech.glide:glide:4.13.2'
     kapt 'com.github.bumptech.glide:compiler:4.13.2'
+
+    implementation 'com.etebarian:meow-bottom-navigation:1.2.0'
 }
