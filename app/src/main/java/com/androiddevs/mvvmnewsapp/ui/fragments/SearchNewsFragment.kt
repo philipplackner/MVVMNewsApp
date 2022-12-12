@@ -1,10 +1,12 @@
 package com.androiddevs.mvvmnewsapp.ui.fragments
 
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.AbsListView
+import android.widget.EditText
 import android.widget.Toast
-import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
@@ -43,17 +45,20 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
             )
         }
         var job: Job? = null
-        etSearch.addTextChangedListener{editable ->
+
+        etSearch.afterTextChanged {editable ->
             job?.cancel()
             job = MainScope().launch{
                 delay(500L)
                 editable?.let{
-                    if(editable.toString().isNotEmpty()){
-                        viewModel.searchNews(editable.toString())
+                    if(it.trim().isNotEmpty()){
+                        viewModel.searchNews(it.trim())
+                    }
+                    else{
+                        newsAdapter.differ.submitList(emptyList())
                     }
                 }
             }
-
         }
 
 
@@ -75,7 +80,7 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Toast.makeText(activity, "An error occured : $message", Toast.LENGTH_LONG).show()
+                        Toast.makeText(activity, "An error occured $message", Toast.LENGTH_SHORT).show()
                     }
                 }
 
@@ -135,6 +140,19 @@ class SearchNewsFragment : Fragment(R.layout.fragment_search_news) {
             layoutManager = LinearLayoutManager(activity)
             addOnScrollListener(this@SearchNewsFragment.scrollListener)
         }
+    }
+    private fun EditText.afterTextChanged(onAfterChangeText: (String?) -> Unit) {
+        this.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun afterTextChanged(editable: Editable?) {
+                onAfterChangeText(editable?.toString())
+            }
+        })
     }
 }
 
