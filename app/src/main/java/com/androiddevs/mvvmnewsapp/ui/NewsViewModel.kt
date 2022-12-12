@@ -68,9 +68,7 @@ class NewsViewModel(
                     searchNewsResponse = resultResponse
                 }
                 else{
-                    val oldArticles = searchNewsResponse?.articles
-                    val newArticles = resultResponse.articles
-                    oldArticles?.addAll(newArticles)
+                    searchNewsResponse?.articles = resultResponse.articles
                 }
                 return Resource.Success(searchNewsResponse ?: resultResponse)
             }

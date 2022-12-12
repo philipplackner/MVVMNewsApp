@@ -49,7 +49,7 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             tvSource.text= article.source?.name
             tvTitle.text= article.title
             tvDescription.text= article.description
-            tvPublishedAt.text= article.publishedAt
+            tvPublishedAt.text= (article.publishedAt?.let {it.subSequence(11,16).toString() + " " + it.subSequence(0,10).toString() })
             setOnClickListener {
                 article?.let { onItemClickListener?.let { it(article) } }
             }

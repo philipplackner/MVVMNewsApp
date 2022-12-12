@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="8dp">
+    android:paddingTop="8dp"
+    android:paddingStart="8dp"
+    android:paddingEnd="8dp">
 
     <ImageView
         android:id="@+id/ivArticleImage"
@@ -20,6 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="SOURCE"
+        android:textStyle="bold"
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ivArticleImage" />
@@ -32,7 +35,7 @@
         android:ellipsize="end"
         android:maxLines="3"
         android:text="TITLE"
-        android:textColor="@android:color/black"
+        android:textColor="@color/colorPrimary"
         android:textSize="15sp"
         android:textStyle="bold"
         app:layout_constraintRight_toRightOf="parent"
@@ -62,5 +65,7 @@
         android:textColor="@android:color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvSource" />
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
