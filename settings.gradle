@@ -1,2 +1,2 @@
-rootProject.name='MVVMNewsApp'
+rootProject.name='BNews'
 include ':app'
