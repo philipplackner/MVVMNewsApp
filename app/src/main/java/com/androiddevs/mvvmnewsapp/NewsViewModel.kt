@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.androiddevs.mvvmnewsapp.db.NewsRepository
+import com.androiddevs.mvvmnewsapp.models.Article
 import com.androiddevs.mvvmnewsapp.models.NewsResponse
 import kotlinx.coroutines.launch
 import retrofit2.Response
@@ -32,6 +33,20 @@ class NewsViewModel(private val newsRepo : NewsRepository):ViewModel() {
             searchNews.postValue((Resource.Loading()))
             val response = newsRepo.searchNews(searchQuery,searchNewsPage)
             searchNews.postValue(handleSearchNewsResponse(response))
+        }
+    }
+
+    fun saveArticle(article: Article){
+        viewModelScope.launch {
+            newsRepo.upsert(article)
+        }
+    }
+
+    fun getSavedNews() = newsRepo.getSavedNews()
+
+    fun deleteArticle(article: Article) {
+        viewModelScope.launch {
+            newsRepo.deleteArticle(article)
         }
     }
 
