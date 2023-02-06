@@ -3,6 +3,7 @@ package com.androiddevs.mvvmnewsapp.fragments
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -10,10 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.androiddevs.mvvmnewsapp.*
 import com.androiddevs.mvvmnewsapp.databinding.FragmentBreakingNewsBinding
 import com.androiddevs.mvvmnewsapp.databinding.FragmentSearchNewsBinding
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
 
 class SearchNewsFragment: Fragment(R.layout.fragment_search_news) {
 
@@ -53,7 +51,7 @@ class SearchNewsFragment: Fragment(R.layout.fragment_search_news) {
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let {
-                        Log.e("BreakingNewsFragment", "An error occured: $it")
+                        Toast.makeText(activity,"An error occured: $it", Toast.LENGTH_LONG).show()
                     }
                 }
                 is Resource.Loading -> {
