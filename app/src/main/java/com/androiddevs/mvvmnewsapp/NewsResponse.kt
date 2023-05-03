@@ -10,3 +10,4 @@ data class NewsResponse(
 )
 
 //Basic Update for just learning rebase.
+//Second change.
